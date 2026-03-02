@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -31,12 +33,26 @@ export default function Home() {
           <div className={styles.logoTop}>RG</div>
           <div className={styles.logoBottom}>SOCIAL MEDIA MANAGER</div>
         </div>
-        <nav className={styles.nav}>
-          <Link href="#about">אודות</Link>
-          <Link href="#services">שירותים</Link>
-          <Link href="#process">איך זה עובד</Link>
-          <Link href="#results">תוצאות</Link>
-          <Link href="https://wa.me/972587670637" className={styles.navContact}>צור קשר</Link>
+        <button
+          className={`${styles.hamburger} ${isMobileMenuOpen ? styles.hamburgerOpen : ''}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div
+          className={`${styles.overlay} ${isMobileMenuOpen ? styles.overlayOpen : ''}`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.navOpen : ''}`}>
+          <Link href="#about" onClick={() => setIsMobileMenuOpen(false)}>אודות</Link>
+          <Link href="#services" onClick={() => setIsMobileMenuOpen(false)}>שירותים</Link>
+          <Link href="#process" onClick={() => setIsMobileMenuOpen(false)}>איך זה עובד</Link>
+          <Link href="#results" onClick={() => setIsMobileMenuOpen(false)}>תוצאות</Link>
+          <Link href="#portfolio" onClick={() => setIsMobileMenuOpen(false)}>תיק עבודות</Link>
+          <Link href="#feedbacks" onClick={() => setIsMobileMenuOpen(false)}>פידבקים</Link>
+          <Link href="https://wa.me/972587670637" className={styles.navContact} onClick={() => setIsMobileMenuOpen(false)}>צור קשר</Link>
         </nav>
       </header>
 
@@ -152,8 +168,13 @@ export default function Home() {
               <p className={styles.aboutParagraph}>השתחררתי מהצבא וישר התחלתי ללמוד ניהול סושיאל , כדי לעזור לבעלי עסקים לשווק את עצמם ברשתות החברתיות לבנות נוכחות לעסק שלהם.</p>
             </div>
             <div className={`${styles.aboutVisual} ${styles.animateHidden}`}>
-              <div className={styles.imagePlaceholderAlt} style={{ position: 'relative', overflow: 'hidden' }}>
-                <Image src="/photos/roni2.jfif" alt="תמונה של רוני גלעד" fill style={{ objectFit: 'cover' }} />
+              <div className={styles.imagePlaceholderAlt} style={{ position: 'relative', overflow: 'hidden', padding: 0 }}>
+                <video
+                  src="/peronal video/Captions_329C77.mp4"
+                  playsInline
+                  controls
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </div>
             </div>
           </div>
@@ -170,6 +191,14 @@ export default function Home() {
                 <svg width="40" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2v20M5 15l7 7 7-7" />
                 </svg>
+              </div>
+              <div className={styles.ctaGroup} style={{ marginTop: '2rem' }}>
+                <Link href="https://wa.me/972587670637" target="_blank" rel="noopener noreferrer" className={styles.whatsappButton}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                  </svg>
+                  בואו נדבר בוואטסאפ
+                </Link>
               </div>
             </div>
           </div>
@@ -209,31 +238,133 @@ export default function Home() {
             <p>הצצה להצלחות האחרונות של הלקוחות שלי ברשתות החברתיות</p>
             <div className={styles.divider}></div>
           </div>
-          <div className={styles.resultsGrid}>
-            <div className={`${styles.resultCard} ${styles.animateHidden}`}>
-              <h3>עלייה של 300% בחשיפה</h3>
-              <p>שימוש באסטרטגיית רילס ויראלית הביא למותג קוסמטיקה חשיפה של מאות אלפי צופים רלוונטיים תוך חודש אחד בלבד.</p>
+          <div className={styles.carouselWrapper}>
+            <div className={styles.carouselTrack}>
+              {/* Group 1 */}
+              <div className={styles.carouselGroup}>
+                {[
+                  "/results/3753C1FE-F126-4FAE-8C02-9F07964EBECD.jpg",
+                  "/results/676B87C7-FB81-48B5-B519-BE609D60F7B7.jpg",
+                  "/results/7CDD918E-9019-4692-877F-A0AD81BD9C0A.jpg",
+                  "/results/WhatsApp Image 2026-03-01 at 21.43.46.jpeg",
+                  "/results/WhatsApp Image 2026-03-01 at 21.43.4777.jpeg",
+                  "/results/WhatsApp Image 2026-03-01 at ghgh.jpeg"
+                ].map((src, idx) => (
+                  <div key={idx} className={styles.resultImgCard}>
+                    <Image src={src} alt={`תוצאה סטטיסטית ${idx + 1}`} fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className={styles.resultImg} />
+                  </div>
+                ))}
+              </div>
+              {/* Group 2 for infinite loop */}
+              <div aria-hidden="true" className={styles.carouselGroup}>
+                {[
+                  "/results/3753C1FE-F126-4FAE-8C02-9F07964EBECD.jpg",
+                  "/results/676B87C7-FB81-48B5-B519-BE609D60F7B7.jpg",
+                  "/results/7CDD918E-9019-4692-877F-A0AD81BD9C0A.jpg",
+                  "/results/WhatsApp Image 2026-03-01 at 21.43.46.jpeg",
+                  "/results/WhatsApp Image 2026-03-01 at 21.43.4777.jpeg",
+                  "/results/WhatsApp Image 2026-03-01 at ghgh.jpeg"
+                ].map((src, idx) => (
+                  <div key={idx} className={styles.resultImgCard}>
+                    <Image src={src} alt={`תוצאה סטטיסטית ${idx + 1}`} fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className={styles.resultImg} />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className={`${styles.resultCard} ${styles.animateHidden}`}>
-              <h3>מיתוג מחדש שהביא לקוחות</h3>
-              <p>בניית שפה ויזואלית אחידה ויוקרתית למעצבת פנים, שהפכה את הפיד לחלון ראווה שמוכר פרויקטים בשווי מאות אלפי שקלים.</p>
-            </div>
-            <div className={`${styles.resultCard} ${styles.animateHidden}`}>
-              <h3>קהילה של 10K עוקבים נאמנים</h3>
-              <p>ניהול שוטף ומעורבות גבוהה בסטוריז יצרו קהילת עוקבים חמה עבור עסק בתחום הייעוץ העסקי, עם אחוזי המרה גבוהים במיוחד.</p>
-            </div>
-            <div className={`${styles.resultCard} ${styles.animateHidden}`}>
-              <h3>זינוק באינטראקציה ובתגובות</h3>
-              <p>כתיבת קופי אישי ומניע לפעולה שהעלה את כמות התגובות בפוסטים ב-150%, ויצר שיח אמיתי מול הלקוחות הפוטנציאליים.</p>
-            </div>
-            <div className={`${styles.resultCard} ${styles.animateHidden}`}>
-              <h3>מפיד מבולגן למותג מנצח</h3>
-              <p>תהליך "לפני ואחרי" שכלל מחיקת תכנים לא רלוונטיים ויצירת קו עיצובי נקי שמשדר אמינות ומקצועיות ללקוחות קצה.</p>
-            </div>
-            <div className={`${styles.resultCard} ${styles.animateHidden}`}>
-              <h3>ירידה של 40% בעלות ליד</h3>
-              <p>אופטימיזציה של מודעות ממומנות בשילוב תוכן אורגני איכותי, שהובילה להוזלה משמעותית בעלויות הפרסום של העסק.</p>
-            </div>
+          </div>
+        </section>
+
+        {/* Portfolio Section */}
+        <section id="portfolio" className={`${styles.section} ${styles.portfolioSection}`}>
+          <div className={`${styles.sectionHeader} ${styles.animateHidden}`}>
+            <h2>תיק עבודות - הצצה לתוצאות</h2>
+            <p>אוסף סרטונים נבחרים שיצרתי ללקוחות</p>
+            <div className={styles.divider}></div>
+          </div>
+          <div className={styles.masonryGrid}>
+            {[
+              "/videos/Captions_065133.mp4",
+              "/videos/Captions_F2DBD3.mp4",
+              "/videos/SaveTik.co_7525415342093372680.mp4",
+              "/videos/SaveTik.co_7530296313519394066.mp4",
+              "/videos/Untitled design (2).mp4",
+              "/videos/Untitled design (3).mp4",
+              "/videos/Untitled design (4).mp4",
+              "/videos/Untitled design (5).mp4",
+              "/videos/Untitled design (7).mp4"
+            ].map((src, idx) => (
+              <div key={idx} className={`${styles.masonryItem} ${styles.animateHidden}`}>
+                <div className={styles.videoCard}>
+                  <video
+                    src={src}
+                    playsInline
+                    loop
+                    muted
+                    autoPlay
+                    className={styles.videoElement}
+                    onMouseEnter={(e) => { e.currentTarget.muted = false; e.currentTarget.controls = true; }}
+                    onMouseLeave={(e) => { e.currentTarget.muted = true; e.currentTarget.controls = false; }}
+                  />
+                  <div className={styles.playOverlay}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Feedbacks Section */}
+        <section id="feedbacks" className={`${styles.section} ${styles.feedbacksSection}`}>
+          <div className={`${styles.sectionHeader} ${styles.animateHidden}`}>
+            <h2>לקוחות ממליצים</h2>
+            <p>הודעות, פרגונים ופידבקים שמחממים את הלב</p>
+            <div className={styles.divider}></div>
+          </div>
+          <div className={styles.rainWrapper}>
+            {[
+              [
+                "/feedbacks/4D3DECD8-6F64-472C-BD54-0A39D07F9868.jpg",
+                "/feedbacks/IMG_9894.PNG",
+                "/feedbacks/IMG_9895.PNG",
+                "/feedbacks/IMG_9896.PNG"
+              ],
+              [
+                "/feedbacks/IMG_9897.PNG",
+                "/feedbacks/IMG_9898.PNG",
+                "/feedbacks/IMG_9899.PNG"
+              ],
+              [
+                "/feedbacks/IMG_9900.PNG",
+                "/feedbacks/IMG_9901.PNG",
+                "/feedbacks/IMG_9902.PNG"
+              ]
+            ].map((colImages, colIdx) => (
+              <div key={colIdx} className={`${styles.rainColumn} ${styles[`rainDelay${colIdx}`]}`}>
+                <div className={styles.rainTrack}>
+                  {/* Group 1 */}
+                  <div className={styles.rainGroup}>
+                    {colImages.map((src, idx) => (
+                      <div key={`g1-${colIdx}-${idx}`} className={styles.feedbackCard}>
+                        <div className={styles.feedbackImageWrapper}>
+                          <Image src={src} alt="פידבק מלקוח" fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Group 2 */}
+                  <div className={styles.rainGroup}>
+                    {colImages.map((src, idx) => (
+                      <div key={`g2-${colIdx}-${idx}`} className={styles.feedbackCard}>
+                        <div className={styles.feedbackImageWrapper}>
+                          <Image src={src} alt="פידבק מלקוח" fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

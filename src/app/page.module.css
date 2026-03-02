@@ -44,6 +44,29 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--text-darker);
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  transform-origin: 1px;
+}
+
 .main {
   flex: 1;
   display: flex;
@@ -693,6 +716,76 @@
   line-height: 1.6;
 }
 
+/* NEW STYLES: Results Gallery Section (Carousel) */
+.carouselWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* Soft fade on edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  padding: 1rem 0;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scrollCarousel 25s linear infinite;
+}
+
+.carouselTrack:hover {
+  animation-play-state: paused;
+}
+
+.carouselGroup {
+  display: flex;
+  gap: 2rem;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(50% + 1rem));
+  }
+}
+
+.resultImgCard {
+  position: relative;
+  /* Fixed width since we're in a flex row */
+  width: 280px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  background-color: #000;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.resultImgCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.resultImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.resultImgCard:hover .resultImg {
+  opacity: 0.8;
+}
+
 /* NEW STYLES: Pricing Section */
 .pricingSection {
   background-color: white;
@@ -779,6 +872,170 @@
   margin-top: 5px;
 }
 
+/* Portfolio Section */
+.portfolioSection {
+  background-color: var(--secondary);
+}
+
+.masonryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.masonryItem {
+  width: 100%;
+}
+
+.videoCard {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.videoCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.videoCard:hover .videoElement {
+  opacity: 0.8;
+}
+
+.playOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.videoCard:hover .playOverlay {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Feedbacks Section */
+.feedbacksSection {
+  background-color: var(--background);
+  overflow: hidden;
+  width: 100%;
+}
+
+.rainWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 800px;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+  padding: 1rem 0;
+}
+
+.rainColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 350px;
+}
+
+.rainTrack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fallDown 30s linear infinite;
+}
+
+.rainTrack:hover {
+  animation-play-state: paused;
+}
+
+.rainGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rainDelay0 .rainTrack {
+  animation-duration: 35s;
+}
+
+.rainDelay1 .rainTrack {
+  animation-duration: 45s;
+}
+
+.rainDelay2 .rainTrack {
+  animation-duration: 40s;
+}
+
+.feedbackCard {
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedbackCard img {
+  border-radius: 20px;
+}
+
+.feedbackCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feedbackImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(calc(-50% - 1rem));
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 /* Responsive */
 @media (max-width: 900px) {
 
@@ -819,14 +1076,82 @@
     padding: 0 1rem;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
   .nav {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75vw;
+    height: 100vh;
+    background: var(--background);
+    padding: 6rem 2rem 2rem;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    align-items: flex-start;
+  }
+
+  .navOpen {
+    right: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlayOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav a {
+    font-size: 1.5rem;
+    width: 100%;
+  }
+
+  .navContact {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .hamburgerOpen span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .hamburgerOpen span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .hamburgerOpen span:nth-child(3) {
+    transform: rotate(-45deg);
   }
 
   .heroVisuals {
     order: 1;
-    height: 400px;
-    transform: scale(0.7);
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .portraitWrapper {
+    width: 300px;
+    height: 412px;
   }
 
   .aboutVisual {
@@ -865,9 +1190,35 @@
   }
 
   .heroVisuals {
-    height: 350px;
-    transform: scale(0.6);
-    margin-top: -2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .portraitWrapper {
+    width: 230px;
+    height: 316px;
+  }
+
+  /* Make orbit icons slightly smaller on very small screens to fit */
+  .floatingElement img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .float1 {
+    left: -20%;
+  }
+
+  .float2 {
+    right: -20%;
+  }
+
+  .float3 {
+    left: -10%;
+  }
+
+  .float4 {
+    right: 10%;
   }
 
   .title {
@@ -938,5 +1289,49 @@
   .processGrid,
   .resultsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .masonryGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1.5rem;
+    gap: 1.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* padding to show slightly the next item */
+    padding-inline-end: 2rem;
+  }
+
+  .masonryGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .masonryItem {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+
+  .rainWrapper {
+    gap: 0.5rem;
+    height: 500px;
+  }
+
+  .rainTrack {
+    gap: 0.5rem;
+  }
+
+  .rainGroup {
+    gap: 0.5rem;
+  }
+
+  .feedbackCard {
+    height: 180px;
+    padding: 0.2rem;
+    border-radius: 8px;
+  }
+
+  .feedbackCard img {
+    border-radius: 6px;
   }
 }
