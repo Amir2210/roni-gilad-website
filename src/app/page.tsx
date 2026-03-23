@@ -170,7 +170,7 @@ export default function Home() {
             <div className={`${styles.aboutVisual} ${styles.animateHidden}`}>
               <div className={styles.imagePlaceholderAlt} style={{ position: 'relative', overflow: 'hidden', padding: 0 }}>
                 <video
-                  src="/peronal video/Captions_329C77.mp4"
+                  src="/peronal%20video/Captions_329C77.mp4"
                   playsInline
                   controls
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -246,9 +246,9 @@ export default function Home() {
                   "/results/3753C1FE-F126-4FAE-8C02-9F07964EBECD.jpg",
                   "/results/676B87C7-FB81-48B5-B519-BE609D60F7B7.jpg",
                   "/results/7CDD918E-9019-4692-877F-A0AD81BD9C0A.jpg",
-                  "/results/WhatsApp Image 2026-03-01 at 21.43.46.jpeg",
-                  "/results/WhatsApp Image 2026-03-01 at 21.43.4777.jpeg",
-                  "/results/WhatsApp Image 2026-03-01 at ghgh.jpeg"
+                  "/results/WhatsApp%20Image%202026-03-01%20at%2021.43.46.jpeg",
+                  "/results/WhatsApp%20Image%202026-03-01%20at%2021.43.4777.jpeg",
+                  "/results/WhatsApp%20Image%202026-03-01%20at%20ghgh.jpeg"
                 ].map((src, idx) => (
                   <div key={idx} className={styles.resultImgCard}>
                     <Image src={src} alt={`תוצאה סטטיסטית ${idx + 1}`} fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className={styles.resultImg} />
@@ -261,9 +261,9 @@ export default function Home() {
                   "/results/3753C1FE-F126-4FAE-8C02-9F07964EBECD.jpg",
                   "/results/676B87C7-FB81-48B5-B519-BE609D60F7B7.jpg",
                   "/results/7CDD918E-9019-4692-877F-A0AD81BD9C0A.jpg",
-                  "/results/WhatsApp Image 2026-03-01 at 21.43.46.jpeg",
-                  "/results/WhatsApp Image 2026-03-01 at 21.43.4777.jpeg",
-                  "/results/WhatsApp Image 2026-03-01 at ghgh.jpeg"
+                  "/results/WhatsApp%20Image%202026-03-01%20at%2021.43.46.jpeg",
+                  "/results/WhatsApp%20Image%202026-03-01%20at%2021.43.4777.jpeg",
+                  "/results/WhatsApp%20Image%202026-03-01%20at%20ghgh.jpeg"
                 ].map((src, idx) => (
                   <div key={idx} className={styles.resultImgCard}>
                     <Image src={src} alt={`תוצאה סטטיסטית ${idx + 1}`} fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className={styles.resultImg} />
@@ -287,11 +287,11 @@ export default function Home() {
               "/videos/Captions_F2DBD3.mp4",
               "/videos/SaveTik.co_7525415342093372680.mp4",
               "/videos/SaveTik.co_7530296313519394066.mp4",
-              "/videos/Untitled design (2).mp4",
-              "/videos/Untitled design (3).mp4",
-              "/videos/Untitled design (4).mp4",
-              "/videos/Untitled design (5).mp4",
-              "/videos/Untitled design (7).mp4"
+              "/videos/Untitled%20design%20(2).mp4",
+              "/videos/Untitled%20design%20(3).mp4",
+              "/videos/Untitled%20design%20(4).mp4",
+              "/videos/Untitled%20design%20(5).mp4",
+              "/videos/Untitled%20design%20(7).mp4"
             ].map((src, idx) => (
               <div key={idx} className={`${styles.masonryItem} ${styles.animateHidden}`}>
                 <div className={styles.videoCard}>

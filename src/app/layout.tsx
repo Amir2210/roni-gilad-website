@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+const playfair = Playfair_Display({ 
+  subsets: ['latin'], 
+  variable: '--font-playfair'
+});
 
 export const metadata: Metadata = {
   title: 'רוני גלעד | ניהול סושיאל ושיווק דיגיטלי',
@@ -16,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl">
-      <body className={inter.className}>{children}</body>
+    <html lang="he" dir="rtl" suppressHydrationWarning>
+      <body className={`${inter.className} ${playfair.variable}`} suppressHydrationWarning>{children}</body>
     </html>
   );
 }
